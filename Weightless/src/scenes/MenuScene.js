@@ -12,9 +12,16 @@ export class MenuScene extends Scene {
     create() {
 
         this.add.rectangle(
-            0,
-            this.scale.height / 2 + 85,
-            this.scale.width,
+            this.scale.width / 4 ,
+            this.scale.height / 2 - 15,
+            this.scale.width / 2,
+            70,
+            0x000000
+        ).setAlpha(.8).setOrigin(0, 0.5);
+        this.add.rectangle(
+            this.scale.width / 3 ,
+            this.scale.height / 2 + 80,
+            this.scale.width / 3,
             50,
             0x000000
         ).setAlpha(.8).setOrigin(0, 0.5);
