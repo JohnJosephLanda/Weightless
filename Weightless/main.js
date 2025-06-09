@@ -1,7 +1,7 @@
 import Phaser from 'phaser'
 
-import TitleScreen from './scenes/TitleScreen'
-import LevelSelect from './scenes/LevelSelect'
+import TitleScreen from '../scenes/TitleScreen'
+import LevelSelect from '../scenes/LevelSelect'
 
 const config = {
     width: 800,
