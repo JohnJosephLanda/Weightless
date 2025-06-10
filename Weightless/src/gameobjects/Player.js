@@ -15,13 +15,13 @@ export class Player extends Physics.Arcade.Image {
         this.scene = scene;
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        this.setGravityY(this.gravityDirection);
         this.setMaxVelocity(100);
         this.addCollidesWith(Wall);
         this.addCollidesWith(Box);
     }
 
     start() {
+        this.setGravityY(this.gravityDirection);
         this.state = "can_move";
         this.x = 200;
     }
