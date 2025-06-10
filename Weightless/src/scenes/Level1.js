@@ -1,13 +1,13 @@
 import { Scene } from "phaser";
 import { Player } from "../gameobjects/Player";
 
-export class MainScene extends Scene {
+export class Level1 extends Scene {
     player = null;
     cursors = null;
-    gravityDirection = 1;
+    background = null;
 
-    points = 0;
-    game_over_timeout = 20;
+    // waiting after gravity flip
+    waitingAfterFlip = 0;
 
     constructor() {
         super("Level1");
@@ -16,25 +16,16 @@ export class MainScene extends Scene {
     init() {
         this.cameras.main.fadeIn(1000, 0, 0, 0);
         this.scene.launch("MenuScene");
-
-        // Reset points
-        this.points = 0;
-        this.game_over_timeout = 20;
     }
 
     create() {
-        this.add.image(0, 0, "background")
-            .setOrigin(0, 0);
-        this.add.image(0, this.scale.height, "floor").setOrigin(0, 1);
+        this.background = this.add.image(0, 0, "background").setDisplaySize(960,540).setOrigin(0,0);
 
         // Player
         this.player = new Player({ scene: this });
 
         // Cursor keys 
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.cursors.space.on("down", () => {
-            this.player.gravityChange();
-        });
 
         // This event comes from MenuScene
         this.game.events.on("start-game", () => {
@@ -46,12 +37,20 @@ export class MainScene extends Scene {
     update() {
         this.player.update();
 
+        if (this.waitingAfterFlip > 0) {
+            this.waitingAfterFlip--;
+        }
+
         // Player movement entries
         if (this.cursors.right.isDown) {
             this.player.move("right");
         }
         if (this.cursors.left.isDown) {
             this.player.move("left");
+        }
+        if (this.waitingAfterFlip == 0 && this.cursors.down.isDown) {
+            this.player.gravityChange();
+            this.waitingAfterFlip = 100;
         }
     }
 }
