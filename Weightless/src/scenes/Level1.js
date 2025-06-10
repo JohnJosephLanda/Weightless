@@ -50,7 +50,7 @@ export class Level1 extends Scene {
         }
         if (this.waitingAfterFlip == 0 && this.cursors.down.isDown) {
             this.player.gravityChange();
-            this.waitingAfterFlip = 100;
+            this.waitingAfterFlip = 70;
         }
     }
 }
