@@ -25,6 +25,6 @@ export class Preloader extends Phaser.Scene {
 
     create() {
         // When all the assets are loaded go to the next scene
-        this.scene.start("MainScene");
+        this.scene.start("Level1");
     }
 }

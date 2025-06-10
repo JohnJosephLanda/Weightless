@@ -5,6 +5,7 @@ export class Player extends Physics.Arcade.Image {
     // Player states: waiting, start, can_move
     state = "waiting";
     scene = null;
+    gravityDirection = 10;
 
     constructor({scene}) {
         super(scene, -190, 100, "player");
@@ -29,6 +30,12 @@ export class Player extends Physics.Arcade.Image {
     }
 
     update() {
+        
+    }
+
+    gravityChange() {
+        this.gravityDirection = this.gravityDirection*-1;
+        this.setGravityY(this.gravityDirection);
     }
 
 }

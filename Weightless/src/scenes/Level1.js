@@ -4,12 +4,13 @@ import { Player } from "../gameobjects/Player";
 export class MainScene extends Scene {
     player = null;
     cursors = null;
+    gravityDirection = 1;
 
     points = 0;
     game_over_timeout = 20;
 
     constructor() {
-        super("MainScene");
+        super("Level1");
     }
 
     init() {
@@ -32,7 +33,7 @@ export class MainScene extends Scene {
         // Cursor keys 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.cursors.space.on("down", () => {
-            // GRAVITY FLIP HERE
+            this.player.gravityChange();
         });
 
         // This event comes from MenuScene
@@ -52,6 +53,5 @@ export class MainScene extends Scene {
         if (this.cursors.left.isDown) {
             this.player.move("left");
         }
-
     }
 }
