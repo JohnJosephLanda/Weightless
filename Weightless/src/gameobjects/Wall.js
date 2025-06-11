@@ -1,7 +1,7 @@
 import { GameObjects, Physics } from "phaser";
 
 export class Wall extends Physics.Arcade.Image {
-    constructor(x, y, num, scaleX, scaleY, {scene}) {
+    constructor(x, y, num, scaleX, scaleY, player, {scene}) {
         super(scene, x, y, "wall"+num);
         // this.setScale(this.scaleX*scaleX,this.scaleY*scaleY);
         this.scene = scene;

@@ -26,6 +26,8 @@ export class Level1 extends Scene {
 
         // Player
         this.player = new Player({ scene: this });
+        this.player.body.setCollideWorldBounds(true, 0, 0);
+
 
         // Cursor keys 
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -42,7 +44,8 @@ export class Level1 extends Scene {
         });
 
         // Creating what's in the level
-        this.wall1 = new Wall(0,0,1,1,1,{scene: this});
+        this.wall1 = new Wall(0,0,1,1,1,this.player,{scene: this});
+        this.physics.add.collider(this.wall1, this.player);
     }
 
     update() {

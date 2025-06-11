@@ -16,9 +16,8 @@ export class Player extends Physics.Arcade.Image {
         this.scene = scene;
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+
         this.setMaxVelocity(100);
-        this.addCollidesWith(Wall);
-        this.addCollidesWith(Box);
     }
 
     start() {
@@ -31,14 +30,14 @@ export class Player extends Physics.Arcade.Image {
         if(this.state === "can_move") {
             if (direction === "left" && !this.willCollideWith(Wall)) {
                 this.x -= 2;
-                if (this.willCollideWith(Box)) {
-                    Box.move("left");
-                }
+                // if (this.willCollideWith(Box)) {
+                //     Box.move("left");
+                // }
             } else if (direction === "right" && !this.willCollideWith(Wall)) {
                 this.x += 2;
-                if (this.willCollideWith(Box)) {
-                    Box.move("Right");
-                }
+                // if (this.willCollideWith(Box)) {
+                //     Box.move("Right");
+                // }
             }
         }
     }
