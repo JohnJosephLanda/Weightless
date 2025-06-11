@@ -25,14 +25,21 @@ export class Level2 extends Scene {
 
         // Player
         this.player = new Player({ scene: this });
+        this.player.body.setCollideWorldBounds(true, 0, 0);
 
         // Cursor keys 
         this.cursors = this.input.keyboard.createCursorKeys();
 
         // For the end of the level
         this.game.events.on("level-end", () => {
-            // this.scene.start("Level3")
+            this.scene.start("Level2")
         });
+
+        // Creating what's in the level
+        this.platform = new Wall(300,400,5,3,this.player,{scene: this});
+        this.physics.add.collider(this.platform, this.player);
+
+        this.end = new LevelEnd(0,0,{scene:this});
     }
 
     update() {

@@ -28,7 +28,6 @@ export class Level1 extends Scene {
         this.player = new Player({ scene: this });
         this.player.body.setCollideWorldBounds(true, 0, 0);
 
-
         // Cursor keys 
         this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -38,14 +37,23 @@ export class Level1 extends Scene {
             this.player.start();
         });
 
-        // For the end of the level
-        this.game.events.on("level-end", () => {
+        // Creating what's in the level
+        this.platform = new Wall(100,300,5,1,this.player,{scene: this});
+        this.physics.add.collider(this.platform, this.player);
+
+        this.end = new LevelEnd(100,460,{scene:this});
+        this.physics.add.collider(this.end,this.player,() => {
             this.scene.start("Level2")
         });
 
-        // Creating what's in the level
-        this.wall1 = new Wall(0,0,1,1,1,this.player,{scene: this});
-        this.physics.add.collider(this.wall1, this.player);
+        // Instructions
+        const start_msg = this.add.bitmapText(
+            100,
+            this.scale.height / 2,
+            "pixelfont",
+            "ARROW KEYS TO MOVE",
+            24
+        ).setOrigin(0.1, 0.5);
     }
 
     update() {

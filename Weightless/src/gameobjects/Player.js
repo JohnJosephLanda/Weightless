@@ -18,6 +18,7 @@ export class Player extends Physics.Arcade.Image {
         this.scene.physics.add.existing(this);
 
         this.setMaxVelocity(100);
+        this.setScale(.13,.13);
     }
 
     start() {
@@ -29,9 +30,9 @@ export class Player extends Physics.Arcade.Image {
     move(direction) {
         if(this.state === "can_move") {
             if (direction === "left") {
-                this.setVelocityX(-60);
+                this.setVelocityX(-100);
             } else if (direction === "right") {
-                this.setVelocityX(60);
+                this.setVelocityX(100);
             }
         }
     }
@@ -50,10 +51,4 @@ export class Player extends Physics.Arcade.Image {
         this.currRotation = (this.currRotation+Math.PI)%(2*Math.PI);
         this.setRotation(this.currRotation);
     }
-
-    spawn(x,y) {
-        thix.x = x;
-        thix.y = y;
-    }
-
 }
