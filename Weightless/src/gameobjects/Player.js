@@ -1,7 +1,4 @@
 import { GameObjects, Physics } from "phaser";
-import { Wall } from "./Wall";
-import { Box } from "./Box";
-import { LevelEnd } from "./LevelEnd";
 
 export class Player extends Physics.Arcade.Image {
     

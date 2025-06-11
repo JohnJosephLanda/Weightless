@@ -4,7 +4,7 @@ import { Wall } from "../gameobjects/Wall";
 import { Box } from "../gameobjects/Box";
 import { LevelEnd } from "../gameobjects/LevelEnd";
 
-export class Level3 extends Scene {
+export class Level4 extends Scene {
     player = null;
     cursors = null;
     background = null;
@@ -13,7 +13,7 @@ export class Level3 extends Scene {
     waitingAfterFlip = 0;
 
     constructor() {
-        super("Level3");
+        super("Level4");
     }
 
     init() {
@@ -46,7 +46,7 @@ export class Level3 extends Scene {
 
         this.end = new LevelEnd(860,270,{scene:this});
         this.physics.add.collider(this.end,this.player,() => {
-            this.scene.start("Level4");
+            this.scene.start("EndScene");
         });
 
         // Instructions

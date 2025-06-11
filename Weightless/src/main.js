@@ -3,7 +3,9 @@ import { Preloader } from "./preloader";
 import { Level1 } from "./scenes/Level1";
 import { Level2 } from "./scenes/Level2";
 import { Level3 } from "./scenes/Level3";
+import { Level4 } from "./scenes/Level4";
 import { MenuScene } from "./scenes/MenuScene";
+import { EndScene } from "./scenes/EndScene";
 
 // More information about config: https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config = {
@@ -33,7 +35,9 @@ const config = {
         Level1,
         Level2,
         Level3,
-        MenuScene
+        Level4,
+        MenuScene,
+        EndScene
     ]
 };
 
