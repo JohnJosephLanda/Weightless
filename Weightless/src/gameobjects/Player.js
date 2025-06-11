@@ -1,6 +1,7 @@
 import { GameObjects, Physics } from "phaser";
 import { Wall } from "./Wall";
 import { Box } from "./Box";
+import { LevelEnd } from "./LevelEnd";
 
 export class Player extends Physics.Arcade.Image {
     
@@ -43,6 +44,9 @@ export class Player extends Physics.Arcade.Image {
     }
 
     update() {
+        if (this.willCollideWith(LevelEnd)) {
+            this.game.events.emit("level-end");
+        }
     }
 
     gravityChange() {
@@ -51,6 +55,11 @@ export class Player extends Physics.Arcade.Image {
         this.setGravityY(this.gravityDirection);
         this.currRotation = (this.currRotation+Math.PI)%(2*Math.PI);
         this.setRotation(this.currRotation);
+    }
+
+    spawn(x,y) {
+        thix.x = x;
+        thix.y = y;
     }
 
 }
