@@ -10,7 +10,8 @@ export class MenuScene extends Scene {
     }
 
     create() {
-
+        this.background = this.add.image(0, 0, "background").setDisplaySize(960,540).setOrigin(0,0);
+        
         this.add.rectangle(
             this.scale.width / 4 ,
             this.scale.height / 2 - 15,

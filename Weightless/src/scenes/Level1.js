@@ -1,5 +1,8 @@
 import { Scene } from "phaser";
 import { Player } from "../gameobjects/Player";
+import { Wall } from "../gameobjects/Wall";
+import { Box } from "../gameobjects/Box";
+import { LevelEnd } from "../gameobjects/LevelEnd";
 
 export class Level1 extends Scene {
     player = null;
@@ -32,6 +35,14 @@ export class Level1 extends Scene {
             this.scene.stop("MenuScene");
             this.player.start();
         });
+
+        // For the end of the level
+        this.game.events.on("level-end", () => {
+            this.scene.start("Level2")
+        });
+
+        // Creating what's in the level
+        this.wall1 = new Wall(0,0,1,1,1,{scene: this});
     }
 
     update() {
