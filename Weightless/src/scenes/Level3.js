@@ -4,7 +4,7 @@ import { Wall } from "../gameobjects/Wall";
 import { Box } from "../gameobjects/Box";
 import { LevelEnd } from "../gameobjects/LevelEnd";
 
-export class Level2 extends Scene {
+export class Level3 extends Scene {
     player = null;
     cursors = null;
     background = null;
@@ -13,7 +13,7 @@ export class Level2 extends Scene {
     waitingAfterFlip = 0;
 
     constructor() {
-        super("Level2");
+        super("Level3");
     }
 
     init() {
@@ -24,7 +24,7 @@ export class Level2 extends Scene {
         this.background = this.add.image(0, 0, "background").setDisplaySize(960,540).setOrigin(0,0);
 
         // Player
-        this.player = new Player(-190, 480, { scene: this });
+        this.player = new Player(-190, 280, { scene: this });
         this.player.body.setCollideWorldBounds(true, 0, 0);
         this.player.start(100);
 
@@ -32,27 +32,36 @@ export class Level2 extends Scene {
         this.cursors = this.input.keyboard.createCursorKeys();
 
         // Creating what's in the level
-        this.platform = new Wall(400,400,2,3,this.player,{scene: this});
-        this.physics.add.collider(this.platform, this.player);
+        this.platform1 = new Wall(100,460,3,2,this.player,{scene: this});
+        this.physics.add.collider(this.platform1, this.player);
 
-        this.end = new LevelEnd(700,480,{scene:this});
+        this.platform2 = new Wall(100,80,3,2,this.player,{scene: this});
+        this.physics.add.collider(this.platform2, this.player);
+
+        this.platform3 = new Wall(800,460,3,2,this.player,{scene: this});
+        this.physics.add.collider(this.platform3, this.player);
+
+        this.platform4 = new Wall(800,80,3,2,this.player,{scene: this});
+        this.physics.add.collider(this.platform4, this.player);
+
+        this.end = new LevelEnd(860,270,{scene:this});
         this.physics.add.collider(this.end,this.player,() => {
             this.scene.start("Level3");
         });
 
         // Instructions
         const start_msg1 = this.add.bitmapText(
-            315,
-            this.scale.height / 2 + 40,
+            670,
+            this.scale.height / 2 + 100,
             "pixelfont",
-            "UP/DOWN TO",
+            "KEEP CHANGING",
             24
         ).setOrigin(0.1, 0.5);
         const start_msg2 = this.add.bitmapText(
-            315,
-            this.scale.height / 2 + 70,
+            670,
+            this.scale.height / 2 + 130,
             "pixelfont",
-            "FLIP GRAVITY",
+            "GRAVITY TO FLOAT",
             24
         ).setOrigin(0.1, 0.5);
     }
