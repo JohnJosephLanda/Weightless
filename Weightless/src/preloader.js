@@ -12,6 +12,9 @@ export class Preloader extends Phaser.Scene {
         this.load.image("background", "background.png");
 
         this.load.image("player", "player/player.png");
+        this.load.image("box", "box.png");
+        this.load.image("wall", "wall.png");
+        this.load.image("levelend", "LevelEnd.png");
 
         // Fonts
         this.load.bitmapFont("pixelfont", "fonts/pixelfont.png", "fonts/pixelfont.xml");

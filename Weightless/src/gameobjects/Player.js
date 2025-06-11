@@ -28,16 +28,10 @@ export class Player extends Physics.Arcade.Image {
 
     move(direction) {
         if(this.state === "can_move") {
-            if (direction === "left" && !this.willCollideWith(Wall)) {
-                this.x -= 2;
-                // if (this.willCollideWith(Box)) {
-                //     Box.move("left");
-                // }
-            } else if (direction === "right" && !this.willCollideWith(Wall)) {
-                this.x += 2;
-                // if (this.willCollideWith(Box)) {
-                //     Box.move("Right");
-                // }
+            if (direction === "left") {
+                this.setVelocityX(-60);
+            } else if (direction === "right") {
+                this.setVelocityX(60);
             }
         }
     }
@@ -46,6 +40,7 @@ export class Player extends Physics.Arcade.Image {
         if (this.willCollideWith(LevelEnd)) {
             this.game.events.emit("level-end");
         }
+        this.setVelocityX(0);
     }
 
     gravityChange() {
