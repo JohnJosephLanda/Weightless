@@ -25,7 +25,7 @@ export class Level1 extends Scene {
         this.background = this.add.image(0, 0, "background").setDisplaySize(960,540).setOrigin(0,0);
 
         // Player
-        this.player = new Player({ scene: this });
+        this.player = new Player(-190, 100, { scene: this });
         this.player.body.setCollideWorldBounds(true, 0, 0);
 
         // Cursor keys 
@@ -34,7 +34,7 @@ export class Level1 extends Scene {
         // This event comes from MenuScene
         this.game.events.on("start-game", () => {
             this.scene.stop("MenuScene");
-            this.player.start();
+            this.player.start(200);
         });
 
         // Creating what's in the level
@@ -43,7 +43,7 @@ export class Level1 extends Scene {
 
         this.end = new LevelEnd(100,460,{scene:this});
         this.physics.add.collider(this.end,this.player,() => {
-            this.scene.start("Level2")
+            this.scene.start("Level2");
         });
 
         // Instructions
@@ -70,7 +70,7 @@ export class Level1 extends Scene {
         if (this.cursors.left.isDown) {
             this.player.move("left");
         }
-        if (this.waitingAfterFlip == 0 && this.cursors.down.isDown) {
+        if (this.waitingAfterFlip == 0 &&  (this.cursors.down.isDown || this.cursors.up.isDown)) {
             this.player.gravityChange();
             this.waitingAfterFlip = 70;
         }

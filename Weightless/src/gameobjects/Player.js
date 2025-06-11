@@ -11,8 +11,8 @@ export class Player extends Physics.Arcade.Image {
     gravityDirection = 60;
     currRotation = 0;
 
-    constructor({scene}) {
-        super(scene, -190, 100, "player");
+    constructor(x,y,{scene}) {
+        super(scene, x, y, "player");
         this.scene = scene;
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
@@ -21,10 +21,10 @@ export class Player extends Physics.Arcade.Image {
         this.setScale(.13,.13);
     }
 
-    start() {
+    start(x) {
         this.setGravityY(this.gravityDirection);
         this.state = "can_move";
-        this.x = 200;
+        this.x = x;
     }
 
     move(direction) {
@@ -38,9 +38,6 @@ export class Player extends Physics.Arcade.Image {
     }
 
     update() {
-        if (this.willCollideWith(LevelEnd)) {
-            this.game.events.emit("level-end");
-        }
         this.setVelocityX(0);
     }
 
