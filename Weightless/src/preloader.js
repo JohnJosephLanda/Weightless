@@ -12,8 +12,8 @@ export class Preloader extends Phaser.Scene {
         this.load.image("background", "background.png");
 
         this.load.image("player", "player/player.png");
-        this.load.image("stablebox", "box.png");
-        this.load.image("flippingbox", "box.png");
+        this.load.image("stablebox", "stablebox.png");
+        this.load.image("flippingbox", "flippingbox.png");
         this.load.image("wall", "wall.png");
         this.load.image("LevelEnd", "LevelEnd.png");
 
