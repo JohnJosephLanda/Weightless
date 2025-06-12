@@ -32,16 +32,16 @@ export class Level3 extends Scene {
         this.cursors = this.input.keyboard.createCursorKeys();
 
         // Creating what's in the level
-        this.platform1 = new Wall(100,460,3,2,this.player,{scene: this});
+        this.platform1 = new Wall(100,460,3,2,{scene: this});
         this.physics.add.collider(this.platform1, this.player);
 
-        this.platform2 = new Wall(100,80,3,2,this.player,{scene: this});
+        this.platform2 = new Wall(100,80,3,2,{scene: this});
         this.physics.add.collider(this.platform2, this.player);
 
-        this.platform3 = new Wall(800,460,3,2,this.player,{scene: this});
+        this.platform3 = new Wall(800,460,3,2,{scene: this});
         this.physics.add.collider(this.platform3, this.player);
 
-        this.platform4 = new Wall(800,80,3,2,this.player,{scene: this});
+        this.platform4 = new Wall(800,80,3,2,{scene: this});
         this.physics.add.collider(this.platform4, this.player);
 
         this.end = new LevelEnd(860,270,{scene:this});

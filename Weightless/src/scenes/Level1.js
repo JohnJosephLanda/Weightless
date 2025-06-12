@@ -38,7 +38,7 @@ export class Level1 extends Scene {
         });
 
         // Creating what's in the level
-        this.platform = new Wall(100,300,5,1,this.player,{scene: this});
+        this.platform = new Wall(100,300,5,1,{scene: this});
         this.physics.add.collider(this.platform, this.player);
 
         this.end = new LevelEnd(100,460,{scene:this});
