@@ -40,13 +40,27 @@ export class Level5 extends Scene {
 
         this.stablebox = new StableBox(200,40,1.5,1.5,-1,{scene:this});
         this.physics.add.collider(this.stablebox, this.player);
-        this.physics.add.collider(this.platform1, this.player);
+        this.physics.add.collider(this.stablebox, this.platform1, () => {
+            this.stablebox.setPushable(false);
+            this.stablebox.x--;
+        });
         
         this.flippingbox = new FlippingBox(250,480,1.5,1.5,{scene:this});
         this.physics.add.collider(this.flippingbox, this.player);
-        this.physics.add.collider(this.flippingbox, this.platform1);
-        this.physics.add.collider(this.flippingbox, this.platform2);
-        this.physics.add.collider(this.flippingbox, this.stablebox);
+        this.physics.add.collider(this.flippingbox, this.stablebox, () => {
+            if (this.flippingbox.y == this.stablebox.y) {
+                this.stablebox.setPushable(false);
+                this.stablebox.x--;
+            }
+        });
+        this.physics.add.collider(this.flippingbox, this.platform1, () => {
+            this.flippingbox.setPushable(false);
+            this.flippingbox.x--;
+        });
+        this.physics.add.collider(this.flippingbox, this.platform2, () => {
+            this.flippingbox.setPushable(false);
+            this.flippingbox.x--;
+        });
 
         this.end = new LevelEnd(860,300,{scene:this});
         this.physics.add.collider(this.end,this.player,() => {
