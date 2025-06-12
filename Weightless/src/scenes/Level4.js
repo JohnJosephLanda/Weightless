@@ -24,7 +24,7 @@ export class Level4 extends Scene {
         this.background = this.add.image(0, 0, "background").setDisplaySize(960,540).setOrigin(0,0);
 
         // Player
-        this.player = new Player(-190, 280, { scene: this });
+        this.player = new Player(-190, 480, { scene: this });
         this.player.body.setCollideWorldBounds(true, 0, 0);
         this.player.start(100);
 
@@ -32,42 +32,45 @@ export class Level4 extends Scene {
         this.cursors = this.input.keyboard.createCursorKeys();
 
         // Creating what's in the level
-        this.platform1 = new Wall(100,460,3,2,this.player,{scene: this});
+        this.platform1 = new Wall(300,400,5,.5,{scene: this});
         this.physics.add.collider(this.platform1, this.player);
 
-        this.platform2 = new Wall(100,80,3,2,this.player,{scene: this});
+        this.platform2 = new Wall(50,230,1.5,.5,{scene: this});
         this.physics.add.collider(this.platform2, this.player);
 
-        this.platform3 = new Wall(800,460,3,2,this.player,{scene: this});
+        this.platform3 = new Wall(890,400,1.5,.5,{scene: this});
         this.physics.add.collider(this.platform3, this.player);
 
-        this.platform4 = new Wall(800,80,3,2,this.player,{scene: this});
+        this.platform4 = new Wall(640,230,5,.5,{scene: this});
         this.physics.add.collider(this.platform4, this.player);
 
-        this.end = new LevelEnd(860,270,{scene:this});
+        this.box1 = new Box(400,480,0.75,0.75,1,{scene:this});
+        this.physics.add.collider(this.box1, this.player);
+        
+        this.box2 = new Box(500,320,0.75,0.75,1,{scene:this});
+        this.physics.add.collider(this.box2, this.player);
+        this.physics.add.collider(this.box2, this.platform1);
+        this.physics.add.collider(this.box2, this.platform2);
+
+        this.end = new LevelEnd(860,120,{scene:this});
         this.physics.add.collider(this.end,this.player,() => {
             this.scene.start("EndScene");
         });
 
         // Instructions
         const start_msg1 = this.add.bitmapText(
-            670,
-            this.scale.height / 2 + 100,
-            "pixelfont",
-            "KEEP CHANGING",
-            24
-        ).setOrigin(0.1, 0.5);
-        const start_msg2 = this.add.bitmapText(
-            670,
+            100,
             this.scale.height / 2 + 130,
             "pixelfont",
-            "GRAVITY TO FLOAT",
+            "BOXES ARE PUSHABLE",
             24
         ).setOrigin(0.1, 0.5);
     }
 
     update() {
         this.player.update();
+        this.box1.update();
+        this.box2.update();
 
         if (this.waitingAfterFlip > 0) {
             this.waitingAfterFlip--;
