@@ -4,6 +4,7 @@ import { Level1 } from "./scenes/Level1";
 import { Level2 } from "./scenes/Level2";
 import { Level3 } from "./scenes/Level3";
 import { Level4 } from "./scenes/Level4";
+import { Level5 } from "./scenes/Level5";
 import { MenuScene } from "./scenes/MenuScene";
 import { EndScene } from "./scenes/EndScene";
 
@@ -36,6 +37,7 @@ const config = {
         Level2,
         Level3,
         Level4,
+        Level5,
         MenuScene,
         EndScene
     ]

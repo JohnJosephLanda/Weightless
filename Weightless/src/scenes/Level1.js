@@ -1,7 +1,6 @@
 import { Scene } from "phaser";
 import { Player } from "../gameobjects/Player";
 import { Wall } from "../gameobjects/Wall";
-import { Box } from "../gameobjects/Box";
 import { LevelEnd } from "../gameobjects/LevelEnd";
 
 export class Level1 extends Scene {

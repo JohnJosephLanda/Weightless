@@ -1,10 +1,10 @@
 import { Scene } from "phaser";
 import { Player } from "../gameobjects/Player";
 import { Wall } from "../gameobjects/Wall";
-import { StableBox } from "../gameobjects/Box";
+import { StableBox, FlippingBox } from "../gameobjects/Box";
 import { LevelEnd } from "../gameobjects/LevelEnd";
 
-export class Level4 extends Scene {
+export class Level5 extends Scene {
     player = null;
     cursors = null;
     background = null;
@@ -13,7 +13,7 @@ export class Level4 extends Scene {
     waitingAfterFlip = 0;
 
     constructor() {
-        super("Level4");
+        super("Level5");
     }
 
     init() {
