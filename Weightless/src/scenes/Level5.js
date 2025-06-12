@@ -32,45 +32,32 @@ export class Level5 extends Scene {
         this.cursors = this.input.keyboard.createCursorKeys();
 
         // Creating what's in the level
-        this.platform1 = new Wall(300,400,5,.5,{scene: this});
+        this.platform1 = new Wall(800,80,3,2,{scene: this});
         this.physics.add.collider(this.platform1, this.player);
 
-        this.platform2 = new Wall(50,230,1.5,.5,{scene: this});
+        this.platform2 = new Wall(800,480,3,2,{scene: this});
         this.physics.add.collider(this.platform2, this.player);
 
-        this.platform3 = new Wall(890,400,1.5,.5,{scene: this});
-        this.physics.add.collider(this.platform3, this.player);
-
-        this.platform4 = new Wall(640,230,5,.5,{scene: this});
-        this.physics.add.collider(this.platform4, this.player);
-
-        this.box1 = new StableBox(400,480,0.75,0.75,1,{scene:this});
-        this.physics.add.collider(this.box1, this.player);
+        this.stablebox = new StableBox(200,40,1.5,1.5,-1,{scene:this});
+        this.physics.add.collider(this.stablebox, this.player);
+        this.physics.add.collider(this.platform1, this.player);
         
-        this.box2 = new StableBox(500,320,0.75,0.75,1,{scene:this});
-        this.physics.add.collider(this.box2, this.player);
-        this.physics.add.collider(this.box2, this.platform1);
-        this.physics.add.collider(this.box2, this.platform2);
+        this.flippingbox = new FlippingBox(250,480,1.5,1.5,{scene:this});
+        this.physics.add.collider(this.flippingbox, this.player);
+        this.physics.add.collider(this.flippingbox, this.platform1);
+        this.physics.add.collider(this.flippingbox, this.platform2);
+        this.physics.add.collider(this.flippingbox, this.stablebox);
 
-        this.end = new LevelEnd(860,120,{scene:this});
+        this.end = new LevelEnd(860,300,{scene:this});
         this.physics.add.collider(this.end,this.player,() => {
             this.scene.start("EndScene");
         });
-
-        // Instructions
-        const start_msg1 = this.add.bitmapText(
-            100,
-            this.scale.height / 2 + 130,
-            "pixelfont",
-            "BOXES ARE PUSHABLE",
-            24
-        ).setOrigin(0.1, 0.5);
     }
 
     update() {
         this.player.update();
-        this.box1.update();
-        this.box2.update();
+        this.stablebox.update();
+        this.flippingbox.update();
 
         if (this.waitingAfterFlip > 0) {
             this.waitingAfterFlip--;
@@ -85,6 +72,7 @@ export class Level5 extends Scene {
         }
         if (this.waitingAfterFlip == 0 && (this.cursors.down.isDown || this.cursors.up.isDown)) {
             this.player.gravityChange();
+            this.flippingbox.gravityChange();
             this.waitingAfterFlip = 70;
         }
     }

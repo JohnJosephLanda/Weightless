@@ -11,6 +11,7 @@ export class StableBox extends Physics.Arcade.Image {
 
         this.body.setCollideWorldBounds(true, 0, 0);
         this.setGravityY(gravityDir*20);
+        this.setMaxVelocity(100);
     }
 
     update() {
@@ -19,7 +20,7 @@ export class StableBox extends Physics.Arcade.Image {
 }
 
 export class FlippingBox extends Physics.Arcade.Image {
-    gravityDir = 20;
+    gravityDir = 60;
 
     constructor(x, y, scaleX, scaleY, {scene}) {
         super(scene, x, y, "flippingbox");
@@ -31,6 +32,7 @@ export class FlippingBox extends Physics.Arcade.Image {
 
         this.body.setCollideWorldBounds(true, 0, 0);
         this.setGravityY(this.gravityDir);
+        this.setMaxVelocity(100);
     }
 
     update() {
@@ -38,6 +40,7 @@ export class FlippingBox extends Physics.Arcade.Image {
     }
 
     gravityChange() {
+        this.setVelocityY(this.gravityDir/2);
         this.gravityDir = this.gravityDir*-1;
         this.setGravityY(this.gravityDir);
     }

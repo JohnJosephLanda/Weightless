@@ -54,7 +54,7 @@ export class Level4 extends Scene {
 
         this.end = new LevelEnd(860,120,{scene:this});
         this.physics.add.collider(this.end,this.player,() => {
-            this.scene.start("EndScene");
+            this.scene.start("Level5");
         });
 
         // Instructions
